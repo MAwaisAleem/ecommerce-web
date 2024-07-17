@@ -1,9 +1,12 @@
+import Image1 from "../image/p9.jpg";
+import Image2 from "../image/p2.webp";
+
 const Homeproduct = [
   {
     id: 1,
     Name: "product1",
     price: "26",
-    image: "image/p1.webp",
+    image: Image1,
     cat: "tv",
     type: "new",
   },
@@ -11,7 +14,7 @@ const Homeproduct = [
     id: 2,
     Name: "product2",
     price: "96",
-    image: "image/p2.webp",
+    image: Image2,
     cat: "laptop",
     type: "new",
   },
