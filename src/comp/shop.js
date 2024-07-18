@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "./shop.css";
+import Slide1 from "../image/shop_top.webp";
 import { AiFillHeart, AiFillEye, AiOutlineClose } from "react-icons/ai";
 const Shop = ({ shop, Filter, allcatefilter, addtocart }) => {
   // Toggle Product Detail
@@ -74,7 +75,7 @@ const Shop = ({ shop, Filter, allcatefilter, addtocart }) => {
           <div className="right_box">
             <div className="banner">
               <div className="img_box">
-                <img src="image/shop_top.webp" alt=""></img>
+                <img src={Slide1} alt=""></img>
               </div>
             </div>
             <div className="product_box">

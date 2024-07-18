@@ -119,6 +119,7 @@
     width: 100%;
     display: flex;
     flex-wrap: wrap;
+    gap: 45px;
 }
 .home .trending .container .left_box .products button
 {
@@ -381,7 +382,7 @@
 }
 .home .banners .container .left_box
 {
-    width: 24%;
+    width: 21%;
 }
 .home .banners .container .left_box .box
 {

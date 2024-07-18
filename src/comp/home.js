@@ -2,6 +2,14 @@ import React, { useEffect, useState } from "react";
 import "./home.css";
 import { Link } from "react-router-dom";
 import Homeproduct from "./home_product";
+import ImagepT1 from "../image/T1.avif";
+import ImageMB1 from "../image/Multi-Banner-1.avif";
+import ImageMB2 from "../image/Multi-banner-2.avif";
+import ImageM3 from "../image/Multi-Banner-3.png";
+import ImageM4 from "../image/Multi-banner-4.avif";
+import ImageM5 from "../image/Multi-Banner-555.webp.png";
+import Slide1 from "../image/slide-1.webp"; // Importing the slide-1 image
+
 import { AiFillEye, AiFillHeart, AiOutlineShoppingCart } from "react-icons/ai";
 import {
   BiLogoFacebook,
@@ -9,6 +17,7 @@ import {
   BiLogoInstagram,
   BiLogoYoutube,
 } from "react-icons/bi";
+
 const Home = ({ addtocart }) => {
   // Product category
   const [newProduct, setNewProduct] = useState([]);
@@ -54,7 +63,10 @@ const Home = ({ addtocart }) => {
   return (
     <>
       <div className="home">
-        <div className="top_banner">
+        <div
+          className="top_banner"
+          style={{ backgroundImage: `url(${Slide1})` }}
+        >
           <div className="contant">
             <h3>silver aluminum</h3>
             <h2>Apple Watch</h2>
@@ -81,31 +93,29 @@ const Home = ({ addtocart }) => {
                 <div className="container">
                   {trendingProduct.map((curElm) => {
                     return (
-                      <>
-                        <div className="box">
-                          <div className="img_box">
-                            <img src={curElm.image} alt=""></img>
-                            <div className="icon">
-                              <div className="icon_box">
-                                <AiFillEye />
-                              </div>
-                              <div className="icon_box">
-                                <AiFillHeart />
-                              </div>
+                      <div className="box" key={curElm.id}>
+                        <div className="img_box">
+                          <img src={curElm.image} alt=""></img>
+                          <div className="icon">
+                            <div className="icon_box">
+                              <AiFillEye />
+                            </div>
+                            <div className="icon_box">
+                              <AiFillHeart />
                             </div>
                           </div>
-                          <div className="info">
-                            <h3>{curElm.Name}</h3>
-                            <p>${curElm.price}</p>
-                            <button
-                              className="btn"
-                              onClick={() => addtocart(curElm)}
-                            >
-                              Add to cart
-                            </button>
-                          </div>
                         </div>
-                      </>
+                        <div className="info">
+                          <h3>{curElm.Name}</h3>
+                          <p>${curElm.price}</p>
+                          <button
+                            className="btn"
+                            onClick={() => addtocart(curElm)}
+                          >
+                            Add to cart
+                          </button>
+                        </div>
+                      </div>
                     );
                   })}
                 </div>
@@ -120,7 +130,7 @@ const Home = ({ addtocart }) => {
                   </div>
                   <div className="detail">
                     <div className="img_box">
-                      <img src="image/T1.avif" alt="testmonial"></img>
+                      <img src={ImagepT1} alt="testmonial"></img>
                     </div>
                     <div className="info">
                       <h3>stephan robot</h3>
@@ -168,19 +178,19 @@ const Home = ({ addtocart }) => {
           <div className="container">
             <div className="left_box">
               <div className="box">
-                <img src="image/Multi-Banner-1.avif" alt="banner"></img>
+                <img src={ImageMB1} alt="banner"></img>
               </div>
               <div className="box">
-                <img src="image/Multi-Banner-2.avif" alt="banner"></img>
+                <img src={ImageMB2} alt="banner"></img>
               </div>
             </div>
             <div className="right_box">
               <div className="top">
-                <img src="image/Multi-Banner-3.webp" alt=""></img>
-                <img src="image/Multi-Banner-4.avif" alt=""></img>
+                <img src={ImageM3} alt=""></img>
+                <img src={ImageM4} alt=""></img>
               </div>
               <div className="bottom">
-                <img src="image/Multi-Banner-5.webp" alt=""></img>
+                <img src={ImageM5} alt=""></img>
               </div>
             </div>
           </div>
@@ -193,28 +203,26 @@ const Home = ({ addtocart }) => {
               </div>
               {newProduct.map((curElm) => {
                 return (
-                  <>
-                    <div className="productbox">
-                      <div className="img-box">
-                        <img src={curElm.image} alt=""></img>
-                      </div>
-                      <div className="detail">
-                        <h3>{curElm.Name}</h3>
-                        <p>$ {curElm.price}</p>
-                        <div className="icon">
-                          <button>
-                            <AiFillEye />
-                          </button>
-                          <button>
-                            <AiFillHeart />
-                          </button>
-                          <button onClick={() => addtocart(curElm)}>
-                            <AiOutlineShoppingCart />
-                          </button>
-                        </div>
+                  <div className="productbox" key={curElm.id}>
+                    <div className="img-box">
+                      <img src={curElm.image} alt=""></img>
+                    </div>
+                    <div className="detail">
+                      <h3>{curElm.Name}</h3>
+                      <p>$ {curElm.price}</p>
+                      <div className="icon">
+                        <button>
+                          <AiFillEye />
+                        </button>
+                        <button>
+                          <AiFillHeart />
+                        </button>
+                        <button onClick={() => addtocart(curElm)}>
+                          <AiOutlineShoppingCart />
+                        </button>
                       </div>
                     </div>
-                  </>
+                  </div>
                 );
               })}
             </div>
@@ -224,28 +232,26 @@ const Home = ({ addtocart }) => {
               </div>
               {featuredProduct.map((curElm) => {
                 return (
-                  <>
-                    <div className="productbox">
-                      <div className="img-box">
-                        <img src={curElm.image} alt=""></img>
-                      </div>
-                      <div className="detail">
-                        <h3>{curElm.Name}</h3>
-                        <p>$ {curElm.price}</p>
-                        <div className="icon">
-                          <button>
-                            <AiFillEye />
-                          </button>
-                          <button>
-                            <AiFillHeart />
-                          </button>
-                          <button onClick={() => addtocart(curElm)}>
-                            <AiOutlineShoppingCart />
-                          </button>
-                        </div>
+                  <div className="productbox" key={curElm.id}>
+                    <div className="img-box">
+                      <img src={curElm.image} alt=""></img>
+                    </div>
+                    <div className="detail">
+                      <h3>{curElm.Name}</h3>
+                      <p>$ {curElm.price}</p>
+                      <div className="icon">
+                        <button>
+                          <AiFillEye />
+                        </button>
+                        <button>
+                          <AiFillHeart />
+                        </button>
+                        <button onClick={() => addtocart(curElm)}>
+                          <AiOutlineShoppingCart />
+                        </button>
                       </div>
                     </div>
-                  </>
+                  </div>
                 );
               })}
             </div>
@@ -255,28 +261,26 @@ const Home = ({ addtocart }) => {
               </div>
               {topProduct.map((curElm) => {
                 return (
-                  <>
-                    <div className="productbox">
-                      <div className="img-box">
-                        <img src={curElm.image} alt=""></img>
-                      </div>
-                      <div className="detail">
-                        <h3>{curElm.Name}</h3>
-                        <p>$ {curElm.price}</p>
-                        <div className="icon">
-                          <button>
-                            <AiFillEye />
-                          </button>
-                          <button>
-                            <AiFillHeart />
-                          </button>
-                          <button onClick={() => addtocart(curElm)}>
-                            <AiOutlineShoppingCart />
-                          </button>
-                        </div>
+                  <div className="productbox" key={curElm.id}>
+                    <div className="img-box">
+                      <img src={curElm.image} alt=""></img>
+                    </div>
+                    <div className="detail">
+                      <h3>{curElm.Name}</h3>
+                      <p>$ {curElm.price}</p>
+                      <div className="icon">
+                        <button>
+                          <AiFillEye />
+                        </button>
+                        <button>
+                          <AiFillHeart />
+                        </button>
+                        <button onClick={() => addtocart(curElm)}>
+                          <AiOutlineShoppingCart />
+                        </button>
                       </div>
                     </div>
-                  </>
+                  </div>
                 );
               })}
             </div>
