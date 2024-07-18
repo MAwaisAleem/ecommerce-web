@@ -1,27 +1,27 @@
 import React, { useState } from "react";
+import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
 import Nav from "./comp/nav";
-import { BrowserRouter } from "react-router-dom";
 import Rout from "./comp/rout";
 import Footer from "./comp/footer";
 import Homeproduct from "./comp/home_product";
+import About from "./comp/about";
+
 const App = () => {
-  // Add To cart
   const [cart, setCart] = useState([]);
-  //Shop Page product
   const [shop, setShop] = useState(Homeproduct);
-  //Shop Search Filter
   const [search, setSearch] = useState("");
-  //Shop category filter
+
   const Filter = (x) => {
     const catefilter = Homeproduct.filter((product) => {
       return product.cat === x;
     });
     setShop(catefilter);
   };
+
   const allcatefilter = () => {
     setShop(Homeproduct);
   };
-  //Shop Search Filter
+
   const searchlength = (search || []).length === 0;
   const searchproduct = () => {
     if (searchlength) {
@@ -34,38 +34,42 @@ const App = () => {
       setShop(searchfilter);
     }
   };
-  //Add To cart
+
   const addtocart = (product) => {
     const exist = cart.find((x) => {
       return x.id === product.id;
     });
     if (exist) {
-      alert("This product is alleardy added in cart");
+      alert("This product is already added in cart Place");
     } else {
       setCart([...cart, { ...product, qty: 1 }]);
       alert("Added To cart");
     }
   };
-  console.log(cart);
+
   return (
-    <>
-      <BrowserRouter>
-        <Nav
-          search={search}
-          setSearch={setSearch}
-          searchproduct={searchproduct}
-        />
-        <Rout
-          setCart={setCart}
-          cart={cart}
-          shop={shop}
-          Filter={Filter}
-          allcatefilter={allcatefilter}
-          addtocart={addtocart}
-        />
-        <Footer />
-      </BrowserRouter>
-    </>
+    <BrowserRouter>
+      <Nav
+        search={search}
+        setSearch={setSearch}
+        searchproduct={searchproduct}
+      />
+      <Switch>
+        <Route exact path="/">
+          <Rout
+            setCart={setCart}
+            cart={cart}
+            shop={shop}
+            Filter={Filter}
+            allcatefilter={allcatefilter}
+            addtocart={addtocart}
+          />
+        </Route>
+        <Route path="/about" component={About} />
+        <Redirect to="/" />
+      </Switch>
+      <Footer />
+    </BrowserRouter>
   );
 };
 
